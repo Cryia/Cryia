@@ -12,7 +12,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
+    if (store.getters.token || getToken()) {
       // 让每个请求携带token
       config.headers['Authorization'] = 'Bearer ' + getToken()
     }
