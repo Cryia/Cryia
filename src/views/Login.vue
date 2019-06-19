@@ -1,48 +1,95 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <div class="title-container">
-        <h3 class="title">
-          {{ '系统登陆' }}
-        </h3>
+    <div class="login-left">
+      <div class="login-logo">
+        <span><img src="../assets/logo-white.png" class="login-logo-img" alt=""></span>
       </div>
+      <div class="login-msg">
+        <h3>Fly makes you faster</h3>
+        <p>New free template by uicookies.com. For more templates visit the site. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <el-button type="primary">GitHub地址</el-button>
+      </div>
+    </div>
+    <div class="login-right">
+      <el-tabs class="login-tabs" v-model="activeTag">
+        <el-tab-pane label="登录" name="login">
+          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+            <el-form-item prop="username">
+              <span class="svg-container">
+                <svg-icon icon-class="user" />
+              </span>
+              <el-input
+                v-model="loginForm.username"
+                :placeholder="'请输入用户名'"
+                name="username"
+                type="text"
+                auto-complete="on"
+              />
+            </el-form-item>
 
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          v-model="loginForm.username"
-          :placeholder="'请输入用户名'"
-          name="username"
-          type="text"
-          auto-complete="on"
-        />
-      </el-form-item>
+            <el-form-item prop="password">
+              <span class="svg-container">
+                <svg-icon icon-class="password" />
+              </span>
+              <el-input
+                v-model="loginForm.password"
+                :type="passwordType"
+                :placeholder="'请输入用户密码'"
+                name="password"
+                auto-complete="on"
+                @keyup.enter.native="handleLogin"
+              />
+              <span class="show-pwd" @click="showPwd">
+                <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+              </span>
+            </el-form-item>
 
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          v-model="loginForm.password"
-          :type="passwordType"
-          :placeholder="'请输入用户密码'"
-          name="password"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-        </span>
-      </el-form-item>
+            <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+              {{ '登 陆' }}
+            </el-button>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-        {{ '登陆' }}
-      </el-button>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="注册" name="register">
+          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+            <el-form-item prop="username">
+              <span class="svg-container">
+                <svg-icon icon-class="user" />
+              </span>
+              <el-input
+                v-model="loginForm.username"
+                :placeholder="'请输入用户名'"
+                name="username"
+                type="text"
+                auto-complete="on"
+              />
+            </el-form-item>
 
-    </el-form>
+            <el-form-item prop="password">
+              <span class="svg-container">
+                <svg-icon icon-class="password" />
+              </span>
+              <el-input
+                v-model="loginForm.password"
+                :type="passwordType"
+                :placeholder="'请输入用户密码'"
+                name="password"
+                auto-complete="on"
+                @keyup.enter.native="handleLogin"
+              />
+              <span class="show-pwd" @click="showPwd">
+                <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+              </span>
+            </el-form-item>
 
+            <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+              {{ '注 册' }}
+            </el-button>
+
+          </el-form>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
   </div>
 </template>
 
@@ -67,6 +114,7 @@ export default {
       }
     }
     return {
+      activeTag: 'login',
       loginForm: {
         username: 'admin',
         password: '12345678'
@@ -126,13 +174,14 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
   $bg:#283443;
   $light_gray:#eee;
-  $cursor: #fff;
+  $cursor: #495057;
 
   @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
     .login-container .el-input input{
       color: $cursor;
       &::first-line {
-        color: $light_gray;
+        /*color: $light_gray;*/
+        color: #495057;
       }
     }
   }
@@ -150,6 +199,7 @@ export default {
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
         color: $light_gray;
+        /*color: #495057;*/
         height: 47px;
         caret-color: $cursor;
         &:-webkit-autofill {
@@ -160,28 +210,31 @@ export default {
     }
     .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
+      /*background: rgba(0, 0, 0, 0.1);*/
+      background: #f2f2f2;
       border-radius: 5px;
-      color: #454545;
+      color: #495057;
     }
   }
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  $bg:#2d3a4b;
+  $bg:#1B5CBF;;
   $dark_gray:#889aa4;
   $light_gray:#eee;
 
   .login-container {
     min-height: 100%;
     width: 100%;
-    background-color: $bg;
+    /*background-color: $bg;*/
+    background: linear-gradient(45deg, #665fee 0%, #27c2de 100%);
+    background: linear-gradient(45deg, #293a4b 0%, #18509c 100%);
     overflow: hidden;
     .login-form {
       position: relative;
-      width: 520px;
+      width: 460px;
       max-width: 100%;
-      padding: 160px 35px 0;
+      padding: 60px 35px 0;
       margin: 0 auto;
       overflow: hidden;
     }
@@ -234,5 +287,64 @@ export default {
       right: 0;
       bottom: 6px;
     }
+  }
+</style>
+<style>
+  .login-left,.login-right{
+    float: left;
+  }
+  .login-left{
+    width: 55%;
+    color:#fff;
+    box-sizing: border-box;
+    padding: 50px 90px;
+  }
+  .login-logo span,.login-logo img{
+    font-size:20px;
+    vertical-align: middle;
+  }
+  .login-msg{
+    margin-top:80px;
+    font-weight: normal;
+    font-family: "Montserrat", Arial, sans-serif;
+  }
+  .login-msg h3{
+    font-size:50px;
+    font-weight: normal;
+  }
+  .login-msg p{
+    font-size: 25px;
+    line-height:40px;
+  }
+  .login-right{
+    margin-top:70px;
+    background-color:#fff;
+    width:460px;
+    height:500px;
+    border-radius: 6px;
+    box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75);
+  }
+  .login-tabs .el-tabs__nav-wrap{
+    height:70px;
+    line-height: 70px;
+  }
+  .login-tabs .el-tabs__nav{
+    width:100%;
+  }
+  .login-tabs .el-tabs__item{
+    width: 50%;
+    text-align: center;
+    font-size: 20px;
+  }
+  .login-tabs .el-tabs__active-bar{
+    width: 50%!important;
+  }
+  .login-button{
+    height:50px;
+    font-size:18px;
+  }
+  .login-logo-img{
+    width: 30%;
+    height:30%;
   }
 </style>
