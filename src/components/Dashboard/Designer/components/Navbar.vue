@@ -2,7 +2,7 @@
   <header class="header">
     <div class="navbar1 container grid-xl">
       <section class="logo navbar-cont">
-        <a>logo</a>
+        <a><img class="edit-log" src="../../../../assets/logo-white.png" alt=""></a>
       </section>
       <section class="navbar-cont nav-middle">
         <widget-box :zoom="zoom"/>
@@ -188,5 +188,9 @@ export default {
   .icon-item span {
     display: block;
     font-size: 12px;
+  }
+  .edit-log{
+    height:55px;
+    padding-top:6px;
   }
 </style>
