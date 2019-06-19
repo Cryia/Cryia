@@ -8,9 +8,107 @@
       </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ '搜索' }}</el-button>
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">{{ '新建' }}</el-button>
+
+      <div class='view-type'>
+        <svg-icon :class="{active: viewType === 'box'}" icon-class="grid" @click="viewType = 'box'"/>
+        <svg-icon :class="{active: viewType === 'list'}" icon-class="list" @click="viewType = 'list'"/>
+      </div>
+    </div>
+
+    <div class="box-list-container" v-loading="listLoading" v-show="viewType == 'box'">
+      <div class="item-box" v-for="item in list" :key="item.hash">
+        <div class="item-box-top">
+          <div class="item-box-top-img">
+            <el-image style="height:100%" :src="item.imgUrl | fullImgUrl">
+              <div slot="placeholder" class="image-slot">
+                <span class="dot">加载中...</span>
+              </div>
+            </el-image>
+          </div>
+          <div class="item-box-top-icon" v-show="true">
+            <p>
+              <el-button size="mini" type="primary" @click="handleDesign(item.hash)">{{ '编辑' }}</el-button>
+              <el-dropdown trigger="click" placement="bottom" @command="handlePublish">
+                <el-button size="mini" type="primary">{{ '发布' }}</el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-tooltip effect="dark" :content="'删除已发布链接'" placement="left">
+                    <el-dropdown-item
+                      icon="el-icon-remove-outline"
+                      v-show="item.publish.status === 'published'"
+                      :command="{hash:item.hash, cmd:'unpublish'}">
+                      {{ '停止发布' }}
+                    </el-dropdown-item>
+                  </el-tooltip>
+                  <el-tooltip effect="dark" :content="'生成一个新的链接'" placement="left">
+                    <el-dropdown-item
+                      icon="el-icon-circle-plus-outline"
+                      v-show="item.publish.status === 'unpublish'"
+                      :command="{hash:item.hash, cmd:'published'}">
+                      {{' 公开发布 '}}
+                    </el-dropdown-item>
+                  </el-tooltip>
+
+                  <el-tooltip effect="dark" :content="'更新已发布链接的内容'" placement="left">
+                    <el-dropdown-item
+                      icon="el-icon-refresh"
+                      v-show="item.publish.status === 'published' && item.config.timestamp > item.publish.timestamp"
+                      :command="{hash:item.hash, cmd:'republish'}">
+                      {{' 重新发布 '}}
+                    </el-dropdown-item>
+                  </el-tooltip>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </p>
+
+            <el-tooltip :content="'预览'" placement="bottom">
+              <i class="el-icon-view" @click="handlePreview(item.hash)"></i>
+            </el-tooltip>
+
+            <el-tooltip :content="'下载'" placement="bottom">
+              <i class="el-icon-download" @click="handleDownload(item.publish.hash)"></i>
+            </el-tooltip>
+
+            <el-tooltip :content="'移动'" placement="bottom">
+              <el-dropdown trigger="click" placement="bottom" @command="handleMove">
+                <i class="el-icon-rank"></i>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item
+                    v-for="(project, key) in projects"
+                    :key="key"
+                    :command="{title:item.config.title, hash:item.hash, project: project, key:key}">
+                    {{ project }}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-tooltip>
+
+            <el-tooltip :content="'克隆'" placement="bottom">
+              <i class="el-icon-copy-document" @click="handleClone(item.hash, item.config.title)"></i>
+            </el-tooltip>
+
+            <el-tooltip :content="'删除'" placement="bottom">
+              <i class="el-icon-delete" @click="handleDelete(item)"></i>
+            </el-tooltip>
+          </div>
+        </div>
+        <div class="item-box-bottom">
+          <h4 class="template-item-title">{{item.config.title}}</h4>
+          <p>
+            <span>{{ item.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+            <el-tooltip :disabled="item | needRepublish" :content="'内容已更新, 未重新发布'" placement="bottom">
+                <!-- <span>{{ item.publish.status | statusFilter }}</span> -->
+              <el-link type="info" style="float:right" :disabled="!item.publish.hash" :href="item.publish.hash | pubUrlFilter" target="_blank">
+                <i class="el-icon-share el-icon--left" v-show="item.publish.hash"></i>
+                {{ item.publish.status | statusFilter }}
+              </el-link>
+            </el-tooltip>
+          </p>
+        </div>
+      </div>
     </div>
 
     <el-table
+      v-show="viewType == 'list'"
       v-loading="listLoading"
       :key="tableKey"
       :data="list"
@@ -42,6 +140,7 @@
           </div>
         </template>
       </el-table-column>
+
       <el-table-column :label="'发布'" class-name="status-col" width="100">
         <template slot-scope="scope">
           <el-tooltip :disabled="scope.row | needRepublish" :content="'内容已更新, 未重新发布'" placement="left">
@@ -80,6 +179,7 @@
           </el-tooltip>
         </template>
       </el-table-column>
+
       <el-table-column :label="'操作'" align="center" width="400" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="handlePreview(scope.row.hash)">{{ '预览' }}</el-button>
@@ -100,16 +200,7 @@
             </el-dropdown>
           </div>
 
-          <div style="display:inline-block; padding-left:10px">
-            <el-popover  placement="bottom" width="200" :ref="`popover-${scope.$index}`">
-              <p>{{ '确定要删除大屏' + scope.row.config.title + '吗?' }} </p>
-              <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="scope._self.$refs[`popover-${scope.$index}`].doClose()">{{ '取消' }}</el-button>
-                <el-button size="mini" type="primary" @click="scope._self.$refs[`popover-${scope.$index}`].doClose() === handleDelete(scope.row)">{{ '确定' }}</el-button>
-              </div>
-              <el-button size="mini" type="danger" slot="reference">{{ '删除' }}</el-button>
-            </el-popover>
-          </div>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">{{ '删除' }}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -166,10 +257,13 @@ export default {
       return publishTypeOptions[status] || '未发布'
     },
     pubUrlFilter (hash) {
-      return hash ? window.location.protocol + '//' + window.location.host + '/dashboard/' + hash : ''
+      return hash ? window.location.protocol + '//' + window.location.host + '/dashboard/' + hash : '#'
     },
     needRepublish (row) {
       return row.publish.status !== 'published' || row.config.timestamp <= row.publish.timestamp
+    },
+    fullImgUrl (url) {
+      return process.env.BASE_API + url
     }
   },
   data () {
@@ -193,7 +287,8 @@ export default {
       dialogTitle: '',
       dialogFormVisible: false,
       downloadLoading: false,
-      isRouterAlive: true
+      isRouterAlive: true,
+      viewType: 'box'
     }
   },
   computed: {
@@ -302,19 +397,30 @@ export default {
       })
     },
     handleDelete: function (row) {
-      deleteDashboard(row.hash).then(response => {
-        this.$notify({
-          title: '成功',
-          message: '删除成功',
-          type: 'success',
-          duration: 2000
+      this.$confirm('确定要删除大屏"' + row.config.title + '"吗?', '', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'error'
+      }).then(() => {
+        deleteDashboard(row.hash).then(response => {
+          this.$notify({
+            title: '成功',
+            message: '删除成功',
+            type: 'success',
+            duration: 2000
+          })
+          const index = this.list.indexOf(row)
+          this.list.splice(index, 1)
+          this.getList()
         })
-        const index = this.list.indexOf(row)
-        this.list.splice(index, 1)
-        this.getList()
-      })
+      }).catch(() => {})
     },
     handleDownload (hash) {
+      if (!hash) {
+        this.$message.error('大屏未发布!')
+        return
+      }
+
       this.downloadLoading = true
       downloadDashboard(hash).then(response => {
         if (response.code === 0) {
@@ -335,6 +441,7 @@ export default {
       })
     },
     handleDesign (hash) {
+      this.listLoading = true
       this.$router.push('/edit/dashboard/' + hash + '?from=' + (this.$route.name || 'all'))
     },
     handlePreview (hash) {
@@ -373,7 +480,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  @import '../../styles/view-box.css';
+
   .el-carousel__item h3 {
     color: #475669;
     font-size: 14px;
@@ -389,4 +498,18 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
+
+  .view-type {
+    float: right;
+    padding-right: 20px;
+    height: 100%;
+    line-height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #f4f4f5;
+  }
+  .view-type .active {
+    color: #299eff;
+  }
+
 </style>

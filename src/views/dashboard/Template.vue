@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="template-list-cont">
+    <div class="box-list-container">
       <div class="item-box" style="cursor: pointer" @click="handleCreate">
         <div class="item-box-top">
           <div class="item-box-top-img">
@@ -184,133 +184,7 @@ export default {
   }
 }
 </script>
-<style>
-  .template-list-cont{
-    width:100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .item-box{
-    width: 250px;
-    height:220px;
-    margin: 0 20px 20px 0;
-    box-sizing: border-box;
-    border:1px solid #eee;
-    /*background:#eee;*/
-  }
-  .item-box:hover{
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
-  }
-  .item-box-top{
-    width:100%;
-    height:150px;
-    position: relative;
-    border-bottom:1px solid #eee;
-  }
-  .item-box-top-img{
-    width:100%;
-    height: 100%;
-    position: absolute;
-    text-align: center;
-    z-index: 0;
-  }
-  .item-box-top-img img{
-    width:100%;
-    height:100%;
-    display: block;
-  }
-  .item-box-top-icon{
-    position: absolute;
-    display: none;
-    z-index: 1;
-    width:100%;
-    height:100%;
-    padding-top:30%;
-    color:#fff;
-    font-size: 26px;
-    text-align: center;
-    background: rgba(0,0,0,0.4);
-  }
-  .item-box-top-icon i{
-    cursor: pointer;
-  }
-  .item-box-top:hover .item-box-top-img img{
-    overflow: hidden;
-    /*transform: scale(1.1, 1.1);*/
-  }
-  .item-box-top:hover .item-box-top-icon{
-    display: block;
-  }
-  .plus-icon{
-    font-size: 50px;
-    margin-top:20%;
-    color:#666;
-  }
-  .item-box-bottom{
-    padding: 0 10px;
-  }
-  .item-box-bottom h4{
-    font-size: 15px;
-    margin:15px 0 0 0;
-    font-weight: normal;
-  }
-  .item-box-bottom p{
-    font-size:14px;
-    margin:6px 0 0 0;
-    color:#999;
-  }
-</style>
-<style rel="stylesheet/scss" lang="scss" scoped>
-  .template-item-title{
-    display: block;
-    width:100%;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-.box-card-component {
-  width:250px;
-  margin-left:8px;
 
-  .box-card-header {
-    position: relative;
-    height: 150px;
-    width: 150px;
-    text-align: center;
-    img {
-      width: 100%;
-      height: 100%;
-      transition: all 0.2s linear;
-      &:hover {
-        transform: scale(1.1, 1.1);
-        filter: contrast(130%);
-      }
-    }
-  }
-  .box-card-operation {
-    position:absolute;
-    bottom: 0;
-    height: 30px;
-    width: 100%;
-    // background-color: #999;
-    display:none;
-    z-index: 1000;
-  }
-  .box-card-operation i{
-    color: #606266;
-    margin: 0 7px;
-    font-size: 1.5em;
-    cursor:pointer;
-  }
-  .box-card-header:hover .box-card-operation {
-    display: block;
-  }
-  .box-card-bottom {
-    margin-top: 13px;
-    line-height: 12px;
-    font-size: 13px;
-    color: #999;
-  }
-}
+<style scoped>
+  @import '../../styles/view-box.css';
 </style>
