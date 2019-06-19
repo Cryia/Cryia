@@ -1,95 +1,98 @@
 <template>
   <div class="login-container">
-    <div class="login-left">
-      <div class="login-logo">
-        <span><img src="../assets/logo-white.png" class="login-logo-img" alt=""></span>
-      </div>
-      <div class="login-msg">
-        <h3>Fly makes you faster</h3>
-        <p>New free template by uicookies.com. For more templates visit the site. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <el-button type="primary">GitHub地址</el-button>
-      </div>
+    <div class="login-logo">
+      <span><img src="../assets/logo-white.png" class="login-logo-img" alt=""></span>
     </div>
-    <div class="login-right">
-      <el-tabs class="login-tabs" v-model="activeTag">
-        <el-tab-pane label="登录" name="login">
-          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-            <el-form-item prop="username">
+    <div class="login-main">
+      <div class="login-left">
+        <div class="login-msg">
+          <h3>Fly makes you faster</h3>
+          <p>New free template by uicookies.com. For more templates visit the site. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <el-button type="primary">GitHub地址</el-button>
+        </div>
+      </div>
+      <div class="login-right">
+        <el-tabs class="login-tabs" v-model="activeTag">
+          <el-tab-pane label="登录" name="login">
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+              <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
               </span>
-              <el-input
-                v-model="loginForm.username"
-                :placeholder="'请输入用户名'"
-                name="username"
-                type="text"
-                auto-complete="on"
-              />
-            </el-form-item>
+                <el-input
+                  v-model="loginForm.username"
+                  :placeholder="'请输入用户名'"
+                  name="username"
+                  type="text"
+                  auto-complete="on"
+                />
+              </el-form-item>
 
-            <el-form-item prop="password">
+              <el-form-item prop="password">
               <span class="svg-container">
                 <svg-icon icon-class="password" />
               </span>
-              <el-input
-                v-model="loginForm.password"
-                :type="passwordType"
-                :placeholder="'请输入用户密码'"
-                name="password"
-                auto-complete="on"
-                @keyup.enter.native="handleLogin"
-              />
-              <span class="show-pwd" @click="showPwd">
+                <el-input
+                  v-model="loginForm.password"
+                  :type="passwordType"
+                  :placeholder="'请输入用户密码'"
+                  name="password"
+                  auto-complete="on"
+                  @keyup.enter.native="handleLogin"
+                />
+                <span class="show-pwd" @click="showPwd">
                 <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
               </span>
-            </el-form-item>
+              </el-form-item>
 
-            <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-              {{ '登 陆' }}
-            </el-button>
+              <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+                {{ '登 陆' }}
+              </el-button>
 
-          </el-form>
-        </el-tab-pane>
-        <el-tab-pane label="注册" name="register">
-          <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-            <el-form-item prop="username">
+            </el-form>
+          </el-tab-pane>
+          <el-tab-pane label="注册" name="register">
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+              <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
               </span>
-              <el-input
-                v-model="loginForm.username"
-                :placeholder="'请输入用户名'"
-                name="username"
-                type="text"
-                auto-complete="on"
-              />
-            </el-form-item>
+                <el-input
+                  v-model="loginForm.username"
+                  :placeholder="'请输入用户名'"
+                  name="username"
+                  type="text"
+                  auto-complete="on"
+                />
+              </el-form-item>
 
-            <el-form-item prop="password">
+              <el-form-item prop="password">
               <span class="svg-container">
                 <svg-icon icon-class="password" />
               </span>
-              <el-input
-                v-model="loginForm.password"
-                :type="passwordType"
-                :placeholder="'请输入用户密码'"
-                name="password"
-                auto-complete="on"
-                @keyup.enter.native="handleLogin"
-              />
-              <span class="show-pwd" @click="showPwd">
+                <el-input
+                  v-model="loginForm.password"
+                  :type="passwordType"
+                  :placeholder="'请输入用户密码'"
+                  name="password"
+                  auto-complete="on"
+                  @keyup.enter.native="handleLogin"
+                />
+                <span class="show-pwd" @click="showPwd">
                 <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
               </span>
-            </el-form-item>
+              </el-form-item>
 
-            <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-              {{ '注 册' }}
-            </el-button>
+              <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+                {{ '注 册' }}
+              </el-button>
 
-          </el-form>
-        </el-tab-pane>
-      </el-tabs>
+            </el-form>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -290,6 +293,16 @@ export default {
   }
 </style>
 <style>
+  .login-main{
+    position: absolute;
+    width:85%;
+    height:600px;
+    left:50%;
+    top:50%;
+    margin-left:-42%;
+    margin-top:-300px;
+    /*border:1px solid #00F*/
+  }
   .login-left,.login-right{
     float: left;
   }
@@ -297,11 +310,18 @@ export default {
     width: 55%;
     color:#fff;
     box-sizing: border-box;
-    padding: 50px 90px;
+    padding: 50px 0;
   }
-  .login-logo span,.login-logo img{
-    font-size:20px;
-    vertical-align: middle;
+  .login-logo{
+    width: 85%;
+    height:80px;
+    margin:30px auto;
+    position: relative;
+  }
+  .login-logo span{
+    display: block;
+    width:190px;
+    height:80px;
   }
   .login-msg{
     margin-top:80px;
@@ -317,10 +337,13 @@ export default {
     line-height:40px;
   }
   .login-right{
-    margin-top:70px;
+    width:45%;
+  }
+  .login-tabs{
+    margin:70px auto 0;
     background-color:#fff;
     width:460px;
-    height:500px;
+    height:460px;
     border-radius: 6px;
     box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75);
   }
@@ -344,7 +367,17 @@ export default {
     font-size:18px;
   }
   .login-logo-img{
-    width: 30%;
-    height:30%;
+    height:80px;
+  }
+  @media screen and (max-width: 960px){
+    .login-logo{
+      text-align: center;
+    }
+    .login-left{
+      display: none;
+    }
+    .login-right{
+      width:100%;
+    }
   }
 </style>
