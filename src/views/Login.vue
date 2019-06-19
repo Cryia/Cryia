@@ -294,13 +294,15 @@ export default {
 </style>
 <style>
   .login-main{
-    position: absolute;
+    /*position: absolute;*/
     width:85%;
-    height:600px;
-    left:50%;
-    top:50%;
-    margin-left:-42%;
-    margin-top:-300px;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    /*height:600px;*/
+    /*left:50%;*/
+    /*top:50%;*/
+    /*margin-left:-42%;*/
+    /*margin-top:-300px;*/
     /*border:1px solid #00F*/
   }
   .login-left,.login-right{
@@ -310,7 +312,7 @@ export default {
     width: 55%;
     color:#fff;
     box-sizing: border-box;
-    padding: 50px 0;
+    padding: 90px 0;
   }
   .login-logo{
     width: 85%;
@@ -342,7 +344,8 @@ export default {
   .login-tabs{
     margin:70px auto 0;
     background-color:#fff;
-    width:460px;
+    max-width:460px;
+    width:100%;
     height:460px;
     border-radius: 6px;
     box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75);
@@ -369,15 +372,19 @@ export default {
   .login-logo-img{
     height:80px;
   }
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 1000px){
     .login-logo{
       text-align: center;
     }
     .login-left{
-      display: none;
+      width: 100%;
+      padding:0;
     }
     .login-right{
       width:100%;
+    }
+    .login-tabs{
+      max-width:100%;
     }
   }
 </style>
