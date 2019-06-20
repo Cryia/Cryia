@@ -18,7 +18,7 @@
       flex>
       <div class="panel-label">大屏简介</div>
       <div class="panel-value">
-        <textarea
+        <textarea class="panel-about"
           v-model="activeElement.about">
         </textarea>
       </div>
@@ -112,5 +112,9 @@ export default {
     color: #fff;
     cursor: pointer;
     border-radius: 2px;
+  }
+  .panel-about {
+    width: 175px;
+    height: 100px;
   }
 </style>

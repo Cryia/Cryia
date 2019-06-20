@@ -10,7 +10,7 @@
       <ul class="layer-list-new">
         <li
           v-for="layer in layers"
-          :class="{'layer-active': layer === activeElement}"
+          :class="{'layer-active': isSelected(layer.uuid)}"
           :key="layer.uuid"
           @click="(e) => {activeLayer(e, layer)}">{{ layer.name }}</li>
       </ul>
@@ -65,6 +65,13 @@ export default {
     },
     leave () {
       this.isCollapse = false
+    },
+    isSelected (uuid) {
+      if (this.$vpd.state.multiSelect) {
+        return this.$vpd.state.multiSelectCols.indexOf(uuid) > -1
+      } else {
+        return this.$vpd.state.uuid === uuid
+      }
     }
   }
 }
@@ -134,7 +141,11 @@ export default {
     border-bottom:1px solid #e8e8e8;
     cursor: pointer;
   }
-  .layer-list-new li:hover{
+  .layer-active {
+    background-color: rgb(48, 65, 86);
+    color:#fff;
+  }
+  .layer-list-new li:hover {
     /*background-color: #47aff3;*/
     background-color: rgb(48, 65, 86);
     color:#fff;

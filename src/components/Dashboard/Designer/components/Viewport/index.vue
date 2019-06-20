@@ -1,7 +1,7 @@
 <template>
   <div
     id="viewport"
-    class="holder"
+    class="holder left-panel-cont"
     :style="preview ? screenSize : {}">
     <ruler-tool
       :ruler-toggle=!preview
@@ -280,12 +280,30 @@ export default {
       transparent 75%,
       #f5f5f5 0
     );
-  background-position: 0 0, 13px 13px;
-  background-size: 26px 26px;
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
   background-color: #f0f3f4;
 }
 .screen {
   /*margin: 25px auto;*/
   transform-origin: left top;
+}
+.left-panel-cont{
+  /* overflow: auto; */
+  height: 100%;
+}
+.left-panel-cont::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 10px;
+}
+.left-panel-cont::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 10px;
+  /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);*/
+  background: #999999;
+}
+.left-panel-cont::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);*/
+  border-radius: 10px;
+  background: #e8e8e8;
 }
 </style>

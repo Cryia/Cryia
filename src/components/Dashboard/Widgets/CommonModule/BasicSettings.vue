@@ -14,6 +14,7 @@
         <div class="panel-label">描述</div>
         <div>
           <textarea
+            class="panel-about"
             v-model.number="activeElement.desc"/>
         </div>
       </div>
@@ -97,3 +98,9 @@ export default {
   }
 }
 </script>
+<style>
+  .panel-about {
+    width: 175px;
+    height: 100px;
+  }
+</style>
