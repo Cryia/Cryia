@@ -71,12 +71,7 @@ export default {
     bgGradientdir1: 'left'
 
   },
-  props: ['w', 'h', 'val'],
-  watch: {
-    'val.bgType': function (newVal, oldVal) {
-      console.log(this.val.bgType)
-    }
-  }
+  props: ['w', 'h', 'val']
 }
 </script>
 

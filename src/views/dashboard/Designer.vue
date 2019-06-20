@@ -148,7 +148,7 @@ export default {
       }
     },
     getBack () {
-      console.log(this.isTemplate)
+      // console.log(this.isTemplate)
       this.$router.push({ path: '/' + (this.isTemplate ? 'template' : ('project/' + this.pathFrom)) })
     },
     saveAndQuit () {

@@ -8,7 +8,7 @@
         <div class="login-msg">
           <h3>开源的大屏数据可视化服务</h3>
           <p>旨在让更多的人看到数据可视化的魅力, 帮助非专业的工程师通过图形化的界面轻松搭建专业水准的可视化应用.</p>
-          <el-button type="primary">GitHub地址</el-button>
+          <el-button type="success"><svg-icon icon-class="github" /> <a href="https://github.com/Cryia" target="_blank">GitHub</a></el-button>
         </div>
       </div>
       <div class="login-right">
@@ -59,7 +59,7 @@
               </span>
                 <el-input
                   v-model="registerForm.username"
-                  :placeholder="'请输入用户名'"
+                  :placeholder="'4~16个字符，可使用字母、数字、下划线'"
                   name="username"
                   type="text"
                   auto-complete="on"
@@ -73,7 +73,7 @@
                 <el-input
                   v-model="registerForm.password"
                   type="text"
-                  :placeholder="'请输入用户密码'"
+                  :placeholder="'6~32个字符，区分大小写'"
                   name="password"
                   auto-complete="on"
                   @keyup.enter.native="handleRegister"
@@ -117,7 +117,7 @@ export default {
     return {
       activeTag: 'login',
       loginForm: {
-        username: 'admin',
+        username: 'test',
         password: '12345678'
       },
       registerForm: {
@@ -167,7 +167,7 @@ export default {
             this.loading = false
           })
         } else {
-          console.log('error submit!!')
+          // console.log('error submit!!')
           return false
         }
       })
@@ -251,8 +251,7 @@ export default {
     min-height: 100%;
     width: 100%;
     /*background-color: $bg;*/
-    background: linear-gradient(45deg, #665fee 0%, #27c2de 100%);
-    background: linear-gradient(45deg, #293a4b 0%, #18509c 100%);
+    background: linear-gradient(45deg, #304156 30%, #18509c 100%);
     overflow: hidden;
     .login-form {
       position: relative;
