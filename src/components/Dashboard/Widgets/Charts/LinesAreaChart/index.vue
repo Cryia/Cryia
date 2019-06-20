@@ -128,7 +128,7 @@ export default {
 
     legend: [],
 
-    dataAPI: 'https://easy-mock.com/mock/5cc6c0a89edd7844f38df463/cryia/api/salevolume', // API拉取地址
+    dataAPI: 'https://easy-mock.com/mock/5c7ce20ccdc04f0e04185d9b/example/mock_copy_1560491079589/charts', // API拉取地址
     dataAutoRefresh: false, // 是否自动刷新
     dataOrigin: 'local', // local 本地 api 远程接口
     dataRefreshTime: 5, // 自动刷新间隔（秒）
@@ -187,49 +187,52 @@ export default {
     dataSeries () {
       if (this.dynamicData[this.val.keyPrimary] && this.dynamicData[this.val.keyPrimary][this.val.keyTarget] && this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]) {
         const orign = this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]
-        let datalen = orign.length
-        if (datalen > this.val.lgArr.length) {
-          let params = {
-            property: 'lgArr',
-            data: [{
-              color: datalen === 3 ? '#f94f2b' : '#42b983',
-              offset: 0
-            }, {
-              color: datalen === 3 ? '#882c8f' : '#4255ff',
-              offset: 1
-            }]
-          }
-          let param = [
-            {
-              name: 'seriesLineWidth',
-              value: 2
-            },
-            {
-              name: 'seriesSymbol',
-              value: 'none'
-            },
-            {
-              name: 'seriesSymbolSize',
-              value: 5
-            },
-            {
-              name: 'isSmooth',
-              value: true
+        if (this.$vpd.state.uuid === this.val.uuid) {
+          let datalen = orign.length
+          if (datalen > this.val.lgArr.length) {
+            let params = {
+              property: 'lgArr',
+              data: [{
+                color: datalen === 3 ? '#f94f2b' : '#42b983',
+                offset: 0
+              }, {
+                color: datalen === 3 ? '#882c8f' : '#4255ff',
+                offset: 1
+              }]
             }
-          ]
-          this.$vpd.commit('UPDATE_DATAS_ADD', param)
-          this.$vpd.commit('ADD_COLOR', params)
-        } else if (datalen < this.val.lgArr.length) {
-          let paramDel = {
-            name: ['seriesLineWidth', 'seriesSymbol', 'seriesSymbolSize', 'isSmooth', 'lgArr'],
-            value: datalen
+            let param = [
+              {
+                name: 'seriesLineWidth',
+                value: 2
+              },
+              {
+                name: 'seriesSymbol',
+                value: 'none'
+              },
+              {
+                name: 'seriesSymbolSize',
+                value: 5
+              },
+              {
+                name: 'isSmooth',
+                value: true
+              }
+            ]
+            this.$vpd.commit('UPDATE_DATAS_ADD', param)
+            this.$vpd.commit('ADD_COLOR', params)
+          } else if (datalen < this.val.lgArr.length) {
+            let paramDel = {
+              name: ['seriesLineWidth', 'seriesSymbol', 'seriesSymbolSize', 'isSmooth', 'lgArr'],
+              value: datalen
+            }
+            this.$vpd.commit('UPDATE_DATAS_DEL', paramDel)
           }
-          this.$vpd.commit('UPDATE_DATAS_DEL', paramDel)
+          this.$vpd.commit('UPDATE_ACTIVE_ELEMENT', {
+            name: 'dataLength',
+            value: datalen
+          })
         }
-        this.$vpd.commit('UPDATE_ACTIVE_ELEMENT', {
-          name: 'dataLength',
-          value: datalen
-        })
+
         return orign.map((item, i) => {
           return {
             type: 'line',
@@ -260,7 +263,8 @@ export default {
       }
     },
     legend () {
-      if (this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]) {
+      if (this.dynamicData[this.val.keyPrimary] && this.dynamicData[this.val.keyPrimary][this.val.keyTarget] && this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]) {
+        // if (this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]) {
         const orign = this.dynamicData[this.val.keyPrimary][this.val.keyTarget][this.val.keyYAxis]
         return orign.map(item => {
           return item.name

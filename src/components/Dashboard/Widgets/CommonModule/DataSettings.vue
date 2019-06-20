@@ -101,13 +101,13 @@
             rows="3"
             placeholder="$CUR_HOST/openapi/demo/chart?type=sellGoods"/>
 
-          <p>可使用示例API：</p>
+          <p class="api-p">可使用示例API：</p>
           <textarea cols="30" rows="2" style="border:none" readonly>https://mock.kunteng.org.cn/mock/5ca2cba34918866472494a14/barchart</textarea>
           <br/>
           <div
             class="panel-row"
             flex>
-            <el-button type="success" @click="activeElement.dataRefresh = !activeElement.dataRefresh">刷新图表</el-button>
+            <el-button class="api-btn" type="success" @click="activeElement.dataRefresh = !activeElement.dataRefresh">刷新图表</el-button>
             <div class="panel-label">自动刷新</div>
             <div class="panel-value">
               <label class="form-switch">
@@ -129,7 +129,7 @@
                 @input="changeTimer($event)">
             </div>
           </div>
-          <p>数据的自动刷新在非编辑模式下有效，最小刷新间隔为10秒<span style="color:red">未完成</span></p>
+          <p class="api-p">数据的自动刷新在非编辑模式下有效，最小刷新间隔为10秒<span style="color:red">未完成</span></p>
         </div>
         <div v-if="dataOrigin == 'local'">
           <json-editor
@@ -182,3 +182,11 @@ export default {
   }
 }
 </script>
+<style>
+  .api-p{
+    font-size:14px;
+  }
+  .panel-wrap .api-btn{
+    padding:0 6px;
+  }
+</style>
