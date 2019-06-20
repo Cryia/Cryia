@@ -6,8 +6,8 @@
     <div class="login-main">
       <div class="login-left">
         <div class="login-msg">
-          <h3>Fly makes you faster</h3>
-          <p>New free template by uicookies.com. For more templates visit the site. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <h3>开源的大屏数据可视化服务</h3>
+          <p>旨在让更多的人看到数据可视化的魅力, 帮助非专业的工程师通过图形化的界面轻松搭建专业水准的可视化应用.</p>
           <el-button type="primary">GitHub地址</el-button>
         </div>
       </div>
@@ -52,13 +52,13 @@
             </el-form>
           </el-tab-pane>
           <el-tab-pane label="注册" name="register">
-            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+            <el-form ref="registerForm" :model="registerForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
               <el-form-item prop="username">
               <span class="svg-container">
                 <svg-icon icon-class="user" />
               </span>
                 <el-input
-                  v-model="loginForm.username"
+                  v-model="registerForm.username"
                   :placeholder="'请输入用户名'"
                   name="username"
                   type="text"
@@ -71,19 +71,16 @@
                 <svg-icon icon-class="password" />
               </span>
                 <el-input
-                  v-model="loginForm.password"
-                  :type="passwordType"
+                  v-model="registerForm.password"
+                  type="text"
                   :placeholder="'请输入用户密码'"
                   name="password"
                   auto-complete="on"
-                  @keyup.enter.native="handleLogin"
+                  @keyup.enter.native="handleRegister"
                 />
-                <span class="show-pwd" @click="showPwd">
-                <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-              </span>
               </el-form-item>
 
-              <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+              <el-button class="login-button" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleRegister">
                 {{ '注 册' }}
               </el-button>
 
@@ -98,6 +95,7 @@
 
 <script>
 import { validUsername } from '@/scripts/validate'
+import { registerAccount } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -121,6 +119,10 @@ export default {
       loginForm: {
         username: 'admin',
         password: '12345678'
+      },
+      registerForm: {
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -169,6 +171,25 @@ export default {
           return false
         }
       })
+    },
+    handleRegister () {
+      this.$refs.registerForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          registerAccount(this.registerForm).then(response => {
+            this.loading = false
+            if (response.code === 0) {
+              this.$message.success(response.msg)
+            } else {
+              this.$message.error(response.msg)
+            }
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          return false
+        }
+      })
     }
   }
 }
@@ -201,8 +222,8 @@ export default {
         -webkit-appearance: none;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
-        color: $light_gray;
-        /*color: #495057;*/
+        // color: $light_gray;
+        *color: #495057;
         height: 47px;
         caret-color: $cursor;
         &:-webkit-autofill {

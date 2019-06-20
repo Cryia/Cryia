@@ -7,8 +7,8 @@ export function isExternal (path) {
 }
 
 export function validUsername (str) {
-  const validMap = ['admin', 'editor']
-  return validMap.indexOf(str.trim()) >= 0
+  const reg = /^([a-zA-Z0-9]|[_]){3,15}$/
+  return reg.test(str)
 }
 
 /* 合法uri */

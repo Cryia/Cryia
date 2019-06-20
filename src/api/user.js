@@ -35,3 +35,11 @@ export function updateProject (data) {
     data
   })
 }
+
+export function registerAccount (data) {
+  return request({
+    url: '/user',
+    method: 'post',
+    data
+  })
+}

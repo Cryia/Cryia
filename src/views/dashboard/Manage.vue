@@ -19,11 +19,7 @@
       <div class="item-box" v-for="item in list" :key="item.hash">
         <div class="item-box-top">
           <div class="item-box-top-img">
-            <el-image style="height:100%" :src="item.imgUrl | fullImgUrl">
-              <div slot="placeholder" class="image-slot">
-                <span class="dot">加载中...</span>
-              </div>
-            </el-image>
+            <el-image style="height:100%" :src="item | fullImgUrl"/>
           </div>
           <div class="item-box-top-icon" v-show="true">
             <p>
@@ -262,8 +258,9 @@ export default {
     needRepublish (row) {
       return row.publish.status !== 'published' || row.config.timestamp <= row.publish.timestamp
     },
-    fullImgUrl (url) {
-      return process.env.BASE_API + url
+    fullImgUrl (item) {
+      // 使缩略图在修改后可以重新加载
+      return process.env.BASE_API + item.imgUrl + '?t=' + item.config.timestamp
     }
   },
   data () {

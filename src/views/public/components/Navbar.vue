@@ -14,18 +14,15 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item disabled>
-            <i class="el-icon-user"></i>
-            <span>{{ name }}</span>
+            <span><i class="el-icon-user"></i> {{ name }}</span>
           </el-dropdown-item>
           <router-link to="/profile">
             <el-dropdown-item divided>
-              <i class="el-icon-setting" />
-              <span>{{ '编辑资料' }}</span>
+              <span><i class="el-icon-setting"/> {{ '编辑资料' }}</span>
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item divided>
-            <i class="el-icon-remove-outline" />
-            <span @click="logout">{{ '退出' }}</span>
+            <span @click="logout"><i class="el-icon-remove-outline"/> {{ '退 出' }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
