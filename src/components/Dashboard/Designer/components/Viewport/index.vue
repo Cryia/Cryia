@@ -266,20 +266,7 @@ export default {
   overflow: auto;
   justify-content: center;
   font-size: 0;
-  background-image: linear-gradient(
-      45deg,
-      #f5f5f5 25%,
-      transparent 0,
-      transparent 75%,
-      #f5f5f5 0
-    ),
-    linear-gradient(
-      45deg,
-      #f5f5f5 25%,
-      transparent 0,
-      transparent 75%,
-      #f5f5f5 0
-    );
+  background-image: linear-gradient(45deg,#f7f4f4 5%,transparent 0,transparent 5%,#304156 0);
   background-position: 0 0, 8px 8px;
   background-size: 16px 16px;
   background-color: #f0f3f4;

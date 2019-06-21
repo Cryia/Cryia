@@ -184,8 +184,8 @@ export default {
 }
 
 .toolbar {
-  background: #fff;
-  user-select: none;
+  background: #1c293a;
+  // user-select: none;
   box-sizing: content-box;
   &.column {
     flex: none;
@@ -199,8 +199,9 @@ export default {
 }
 
 .control-panel {
-  background: #fff;
-  user-select: none;
+  background: #1c293a;
+  color: #f1f1f1;
+  // user-select: none;
   &.column {
     flex: none;
     width: 400px;

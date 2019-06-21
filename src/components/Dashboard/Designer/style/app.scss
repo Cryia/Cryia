@@ -93,7 +93,7 @@ select {
 }
 .radioscont label{
   font-weight: normal;
-  font-size:15px;
+  font-size:14px;
 }
 
 .btn-small {
@@ -130,12 +130,19 @@ select {
   height:100%;
 }
 
-input, input[type='number'],input[type='text'], optgroup, select {
+.panel-wrap .form-select:not([multiple]):not([size]), select:not([multiple]):not([size]) {
+  background:#304156;
+  padding-right: 1.2rem;
+}
+
+.panel-wrap input, select {
   height: 28px;
   line-height: 28px;
-  border: 1px solid #ccc;
+  border: 1px solid #253952;
   font-size:13px;
   padding: 0 0 0 5px;
+  color: #f1f1f1;
+  background-color: #304156;
 }
 .panel-wrap button{
   height: 28px;
@@ -148,7 +155,9 @@ input, input[type='number'],input[type='text'], optgroup, select {
 textarea{
   font-size:13px;
   padding: 0 0 0 5px;
-  border: 1px solid #ccc;
+  color: #f1f1f1;
+  border: 1px solid #253952;
+  background-color: #304156;
 }
 input[type='color']{
   height:24px;
@@ -194,4 +203,23 @@ input[type='radio']{
   width:20px;
   height:20px;
   margin:10px 0 0 6px;
+}
+.form-checkbox input:checked + .form-icon, .form-radio input:checked + .form-icon, .form-switch input:checked + .form-icon {
+  background: #3a8ee6;
+  border-color: #000;
+}
+.tab {
+   border-bottom: 0.05rem solid #1c293a;
+}
+.tab .tab-item.active a, .tab .tab-item a.active {
+  border-bottom-color: #2196f3;
+  color: #f1f1f1;
+}
+
+.tab .tab-item a:focus, .tab .tab-item a:hover {
+  color: #f1f1f1;
+}
+
+textarea[readonly] {
+  background-color: #304156;
 }

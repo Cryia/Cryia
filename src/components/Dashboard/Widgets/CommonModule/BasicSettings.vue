@@ -5,9 +5,7 @@
       <div class="panel-row">
         <div class="panel-label">名称</div>
         <div>
-          <input
-            v-model="activeElement.name"
-            type="text">
+          <input v-model="activeElement.name">
         </div>
       </div>
       <div class="panel-row">

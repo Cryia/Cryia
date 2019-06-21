@@ -80,13 +80,13 @@ export default {
   .toolbar.column{
     width:40px;
   }
-</style>
-<style>
+
   .menu-bar-new.toolbar-container{
     width:40px;
     padding:60px 0 0 30px;
     box-sizing: border-box;
-    border-right:1px solid #ddd;
+    border-right:1px solid #1c293a;
+    color: #f1f1f1;
   }
   .toolbar-ctrl-panel {
     position: absolute;
@@ -109,7 +109,7 @@ export default {
     font-size: 20px;
     text-align: center;
     color:#f1f1f1;
-    background-color: rgb(48, 65, 86);
+    background-color: #1c293a;
     margin-left: -3px;
     box-sizing: border-box;
   }
@@ -120,13 +120,13 @@ export default {
     width: 120px;
   }
   .toolbar-title{
-    background-color: #eee;
     height:50px;
     line-height: 50px;
     margin:0;
     text-align: center;
     font-size:14px;
-  }
+    background-color: #304156;
+}
   .layer-list-new{
     list-style-type:none;
     padding:0;
@@ -138,21 +138,22 @@ export default {
     height:40px;
     line-height: 40px;
     box-sizing: border-box;
-    border-bottom:1px solid #e8e8e8;
+    border-bottom:1px solid #1c293a;
     cursor: pointer;
   }
   .layer-active {
-    background-color: rgb(48, 65, 86);
+    background-color: #3a8ee6;
     color:#fff;
   }
   .layer-list-new li:hover {
     /*background-color: #47aff3;*/
-    background-color: rgb(48, 65, 86);
+    background-color: #3a8ee6;
     color:#fff;
   }
   .left-panel-cont{
     overflow-y: auto;
     height: 100%;
+    background-color: #1c293a;
   }
   .left-panel-cont::-webkit-scrollbar {/*滚动条整体样式*/
     width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/

@@ -107,7 +107,7 @@
           <div
             class="panel-row"
             flex>
-            <el-button class="api-btn" type="success" @click="activeElement.dataRefresh = !activeElement.dataRefresh">刷新图表</el-button>
+            <el-button class="api-btn" size="mini" type="primary" @click="activeElement.dataRefresh = !activeElement.dataRefresh">刷新图表</el-button>
             <div class="panel-label">自动刷新</div>
             <div class="panel-value">
               <label class="form-switch">

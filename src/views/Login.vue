@@ -6,7 +6,7 @@
     <div class="login-main">
       <div class="login-left">
         <div class="login-msg">
-          <h3>开源的大屏数据可视化服务</h3>
+          <h3>可视化数据大屏开发平台</h3>
           <p>旨在让更多的人看到数据可视化的魅力, 帮助非专业的工程师通过图形化的界面轻松搭建专业水准的可视化应用.</p>
           <el-button type="success"><svg-icon icon-class="github" /> <a href="https://github.com/Cryia" target="_blank">GitHub</a></el-button>
         </div>
@@ -355,7 +355,7 @@ export default {
     font-weight: normal;
   }
   .login-msg p{
-    font-size: 25px;
+    font-size: 20px;
     line-height:40px;
   }
   .login-right{

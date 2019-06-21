@@ -93,7 +93,6 @@ export default {
     font-size: 20px;
     text-align: center;
     color:#aab2bd;
-    background-color: #232d3c;
     margin-left: -3px;
     box-sizing: border-box;
   }
@@ -102,7 +101,7 @@ export default {
   }
   .panel-container.panel-ctrl-panel.big-panel{
     width:300px;
-    border-left:1px solid #ddd;
+    border-left:1px solid #1c293a;
   }
   .panel-ctrl-panel.big-panel .min-banner{
     display: none;
@@ -125,6 +124,7 @@ export default {
     border-radius: 10px;
     background: #e8e8e8;
   }
+
 </style>
 <style lang="scss">
   @import '../../style/_variables.scss';
@@ -160,7 +160,6 @@ export default {
     height: 36px;
     padding-left: 6px;
     margin-left:15px;
-    color: #999;
   }
   .panel-value {
     min-width: 80px;
@@ -196,6 +195,7 @@ export default {
   .panel-wrap input[type="text"] {
     /*width: 100%;*/
   }
+
   .panel-preview {
     width: 150px;
     height: 32px;
@@ -211,8 +211,8 @@ export default {
     line-height: 40px;
     padding: 0 12px;
     font-size:14px;
-    background-color: #f5f7fa;
-    border-bottom: 1px solid #e6eaf1;
+    background-color: #304156;
+    border-bottom: 1px solid #1c293a;
     cursor: pointer;
   }
   .panel-item-new-set{

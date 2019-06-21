@@ -8,8 +8,7 @@
       <div class="panel-label">大屏名称</div>
       <div class="panel-value">
         <input
-          v-model="activeElement.title"
-          type="text">
+          v-model="activeElement.title">
       </div>
     </div>
 
