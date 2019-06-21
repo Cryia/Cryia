@@ -90,7 +90,11 @@ export default {
       this.$emit('save', this.$vpd.state)
     })
     this.$vpd.$on('quit', () => {
+      this.$vpd.commit('INIT_ACTIVE')
       this.$emit('quit', this.$vpd.state)
+    })
+    this.$vpd.$on('preview', () => {
+      this.$emit('preview', this.$vpd.state)
     })
   },
 

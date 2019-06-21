@@ -10,16 +10,27 @@
       <section class="navbar-cont navbar-right">
         <a
           class="btn btn-link tooltip tooltip-bottom"
+          data-tooltip="预览"
+          @click="preview">
+          <svg-icon icon-class="eye-open" />
+        </a>
+        <a
+          class="btn btn-link tooltip tooltip-bottom"
           data-tooltip="撤销 Ctrl + Z"
-          @click="undo"><vpd-icon name="undo" /> 撤销
+          @click="undo">
+          <svg-icon icon-class="undo" />
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
-          @click="save"><vpd-icon name="save" /> 保存
+          data-tooltip="保存"
+          @click="save">
+          <svg-icon icon-class="save" />
         </a>
         <a
           class="btn btn-link tooltip tooltip-bottom"
-          @click="quit"><vpd-icon name="quit" /> 退出
+          data-tooltip="退出"
+          @click="quit">
+          <svg-icon icon-class="quit" />
         </a>
       </section>
     </div>
@@ -70,6 +81,10 @@ export default {
       this.$vpd.dispatch('undo')
     },
 
+    preview () {
+      this.$vpd.dispatch('preview')
+    },
+
     triggerKeyupFn (e) {
       e.stopPropagation()
 
@@ -106,7 +121,7 @@ export default {
     }
     .btn.btn-link {
       color: $gray-color;
-      margin-right: 15px;
+      margin-right: 5px;
     }
     .btn.btn-link:hover {
       color: $light-color;

@@ -6,7 +6,8 @@
       :upload="handleUpload"
       :upload-option="uploadOption"
       @save="handleSave"
-      @quit="handleQuit"/>
+      @quit="handleQuit"
+      @preview="handlePreview"/>
 
     <el-dialog
       title="提示"
@@ -146,6 +147,13 @@ export default {
       } else {
         this.getBack()
       }
+    },
+    handlePreview () {
+      const routeUrl = this.$router.resolve({
+        path: '/preview/' + this.hash
+      })
+
+      window.open(routeUrl.href, '_blank')
     },
     getBack () {
       // console.log(this.isTemplate)

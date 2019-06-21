@@ -18,6 +18,9 @@ export default {
   quit ({ state, store }) {
     store.$emit('quit', state)
   },
+  preview ({ state, store }) {
+    store.$emit('preview', state)
+  },
   // 撤销 ctrl + z
   undo ({ state, commit }) {
     let step = state.steps[state.steps.length - 2]
