@@ -229,6 +229,8 @@ export default {
     state.type = 'page'
     state.index = -1
     state.uuid = null
+    state.multiSelect = false
+    state.multiSelectCols = []
   },
 
   // 替换图片

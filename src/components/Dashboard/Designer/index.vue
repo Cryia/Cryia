@@ -87,10 +87,13 @@ export default {
 
     this.$vpd.$on('save', () => {
       this.$vpd.commit('INIT_ACTIVE')
+
       this.$emit('save', this.$vpd.state)
     })
     this.$vpd.$on('quit', () => {
+      // 清空选中样式
       this.$vpd.commit('INIT_ACTIVE')
+
       this.$emit('quit', this.$vpd.state)
     })
     this.$vpd.$on('preview', () => {
