@@ -29,12 +29,28 @@ export const constantRouterMap = [
   },
   {
     path: '/404',
-    component: () => import('@/views/ErrorPage404'),
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: '404',
+        component: () => import('@/views/ErrorPage404'),
+        meta: { title: '404' }
+      }
+    ],
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/ErrorPage401'),
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: '401',
+        component: () => import('@/views/ErrorPage401'),
+        meta: { title: '401' }
+      }
+    ],
     hidden: true
   },
   {

@@ -97,7 +97,7 @@ export default {
 <style>
   .panel-preview.pic-updata-btn{
     width: 70px;
-    background-color: #eee;
+    background-color: #304156;
     text-align: center;
     line-height: 32px;
   }
@@ -108,7 +108,7 @@ export default {
     padding:0 6px;
     border: none;
     background: #42b983;
-    color: #fff;
+    color: #304156;
     cursor: pointer;
     border-radius: 2px;
   }
