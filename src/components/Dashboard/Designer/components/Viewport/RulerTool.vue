@@ -133,10 +133,10 @@ export default {
       return this.rulerToggle ? 18 : 0
     },
     rulerWidth () {
-      return this.width * (this.zoom / 100) + 18
+      return this.width * (this.zoom / 100) + this.paddingTop
     },
     rulerHeight () {
-      return this.height * (this.zoom / 100) + 18
+      return this.height * (this.zoom / 100) + this.paddingTop
     }
   },
   watch: {
