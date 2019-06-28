@@ -16,11 +16,7 @@
           <div class="panel-row">
             <div class="panel-label">文本颜色</div>
             <div class="panel-value">{{ activeElement.xTextColor }}</div>
-            <div>
-              <input
-                v-model="activeElement.xTextColor"
-                type="color">
-            </div>
+            <el-color-picker size="small" v-model="activeElement.xTextColor"/>
           </div>
           <div class="panel-row">
             <div class="panel-label">文本旋转</div>
@@ -32,11 +28,7 @@
           <div class="panel-row">
             <div class="panel-label">轴线颜色</div>
             <div class="panel-value">{{ activeElement.xLineColor }}</div>
-            <div>
-              <input
-                v-model="activeElement.xLineColor"
-                type="color">
-            </div>
+            <el-color-picker size="small" v-model="activeElement.xLineColor"/>
           </div>
           <div
             class="panel-row"
@@ -91,11 +83,7 @@
           <div class="panel-row">
             <div class="panel-label">文本颜色</div>
             <div class="panel-value">{{ activeElement.yTextColor }}</div>
-            <div>
-              <input
-                v-model="activeElement.yTextColor"
-                type="color">
-            </div>
+            <el-color-picker size="small" v-model="activeElement.yTextColor"/>
           </div>
           <div
             class="panel-row"
@@ -141,11 +129,7 @@
             class="panel-row">
             <div class="panel-label">轴线颜色</div>
             <div class="panel-value">{{ activeElement.yLineColor }}</div>
-            <div>
-              <input
-                v-model="activeElement.yLineColor"
-                type="color">
-            </div>
+            <el-color-picker size="small" v-model="activeElement.yLineColor"/>
           </div>
           <div
             class="panel-row"
@@ -165,11 +149,7 @@
           class="panel-row">
           <div class="panel-label">标线颜色</div>
           <div class="panel-value">{{ activeElement.splitLineColor }}</div>
-          <div>
-            <input
-              v-model="activeElement.splitLineColor"
-              type="color">
-          </div>
+          <el-color-picker size="small" v-model="activeElement.splitLineColor"/>
         </div>
         </div>
       </div>
@@ -214,11 +194,7 @@
           <div class="panel-row">
           <div class="panel-label">标题颜色</div>
           <div class="panel-value">{{ activeElement.titleColor }}</div>
-          <div>
-            <input
-              v-model="activeElement.titleColor"
-              type="color">
-          </div>
+          <el-color-picker size="small" v-model="activeElement.titleColor"/>
         </div>
         </div>
       </div>
@@ -233,10 +209,8 @@
                 :key="index"
                 class="panel-setcolor-item">
                 <div class="panel-value-new">{{ item.color }}</div>
+                <el-color-picker size="small" v-model="item.color"/>
                 <div>
-                  <input
-                    v-model="item.color"
-                    type="color">
                   <input
                     v-if="activeElement.lgArr.length > 1"
                     v-model="item.offset"

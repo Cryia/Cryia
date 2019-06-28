@@ -50,9 +50,7 @@
       flex>
       <div class="panel-label">页面背景色</div>
       <div class="panel-value">
-        <input
-          v-model="activeElement.backgroundColor"
-          type="color">
+        <el-color-picker v-model="activeElement.backgroundColor" size="mini" show-alpha></el-color-picker>
       </div>
     </div>
     <div class="panel-row">
