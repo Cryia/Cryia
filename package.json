@@ -20,7 +20,7 @@
     "dom-to-image": "^2.6.0",
     "echarts": "^4.2.1",
     "element-ui": "^2.8.2",
-    "monaco-editor": "^0.16.2",
+    "monaco-editor": "^0.19.3",
     "nanoid": "^2.0.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
